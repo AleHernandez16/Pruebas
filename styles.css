@@ -1,148 +1,104 @@
+:root {
+    --bg-color-top: #87ceeb;
+    --bg-color-bottom: #f0e68c;
+    --center-color: #4a3a25;
+    --petal-color: #ffd700;
+    --stem-color: #066406;
+}
+
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-end;
     height: 100vh;
-    background-color: #fae1dd;
-    font-family: DM Serif Text, sans-serif;
+    background: linear-gradient(to bottom, var(--bg-color-top), var(--bg-color-bottom));
+    overflow: hidden;
     margin: 0;
 }
 
-.contenedor {
+.sunflower-garden {
     position: relative;
-}
-
-.superior {
-    position: absolute;
-    border-left: 180px solid transparent;
-    border-right: 180px solid transparent;
-    border-top: 120px solid #f08080;
-    border-bottom: 120px solid transparent;
-
-    transition: transform .75s;
-    transform-origin: top;
-}
-
-.mensaje {
-    position: absolute;
-    padding: 1.5rem;
-    line-height: 1.5rem;
-    box-sizing: border-box;
-    text-align: center;
-    font-family: 'Brush Script MT', cursive;
-    font-size: 35px;
-    background: #eae2b7;
-    width: 360px;
-    height: 240px;
-    z-index: -1;
-    transition: transform 0.75s ease-in-out;
-}
-
-.mensaje:before {
-    content: "";
-    border-style: dotted;
-    position: absolute;
-    top: 12px;
-    left: 12px; 
-    right: 12px; 
-    bottom: 55px; 
-}
-
-.mensaje p{
-    position: relative;
-    top: -10px;
-    font-size: 1.2rem;
-}
-
-.carta {
-    border-left: 180px solid #f8ad9d;
-    border-right: 180px solid #f4978e;
-    border-top: 120px solid transparent;
-    border-bottom: 120px solid #f8ad9d;
-
-}
-
-.bx {
-    position: absolute;
-    color: #f6406a;
-    top: 90px;
-    right: 155px;
-    font-size: 50px;
-    animation: palpitar 0.6s linear infinite;
-}
-
-.psorpresa {
-    margin-top: -10px;
-}
-
-.botones {
-    margin-top: 15px;
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-around; /* Distribuye uniformemente los girasoles */
+    align-items: flex-end;
 }
 
-.boton {
-    padding: 10px 20px;
-    background: linear-gradient(135deg, #ff66b2, #ff4081);
-    background-size: 200% 200%;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.sunflower-container {
+    position: relative; /* Cambiado a relative para un mejor control en flexbox */
+    transform-origin: bottom center;
+    transform: scale(0.9); /* Tamaño uniforme para todos */
+    animation: sway 5s infinite ease-in-out;
+    margin: 0 10px; /* Separación entre girasoles */
 }
 
-.boton:hover {
-    background-position: 100% 100%;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+.stem {
+    width: 6px;
+    height: 150px;
+    background-color: var(--stem-color);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
 }
 
-.abrir-superior {
-    transform: rotateX(180deg);
+.sunflower-center {
+    width: 80px;
+    height: 80px;
+    background-color: var(--center-color);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7), inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.abrir-mensaje {
-    transform: translateY(-130px);
+.petals-container {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+    z-index: 2;
 }
 
-.bx-rotada {
-    color: #f6406a;
-    animation: none; 
+.petal {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    background-color: var(--petal-color);
+    border-radius: 50% 50% 20px 20px;
+    transform-origin: 50% 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(var(--rotation));
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-  
-@keyframes palpitar {
-    0% {
-      transform: scale(1.07); /* Tamaño original */
-    }
-    80% {
-      transform: scale(1.0); /* Aumentar el tamaño un poco */
-    }
-    100% {
-      transform: scale(1.08); /* Regresar al tamaño original */
-    }
-}
+.petal:nth-child(1) { --rotation: 0deg; }
+.petal:nth-child(2) { --rotation: 22.5deg; }
+.petal:nth-child(3) { --rotation: 45deg; }
+.petal:nth-child(4) { --rotation: 67.5deg; }
+.petal:nth-child(5) { --rotation: 90deg; }
+.petal:nth-child(6) { --rotation: 112.5deg; }
+.petal:nth-child(7) { --rotation: 135deg; }
+.petal:nth-child(8) { --rotation: 157.5deg; }
+.petal:nth-child(9) { --rotation: 180deg; }
+.petal:nth-child(10) { --rotation: 202.5deg; }
+.petal:nth-child(11) { --rotation: 225deg; }
+.petal:nth-child(12) { --rotation: 247.5deg; }
+.petal:nth-child(13) { --rotation: 270deg; }
+.petal:nth-child(14) { --rotation: 292.5deg; }
+.petal:nth-child(15) { --rotation: 315deg; }
+.petal:nth-child(16) { --rotation: 337.5deg; }
 
-@media (max-width: 768px) {
-
-    .mensaje:before {
-        content: "";
-        border-style: dotted;
-        position: absolute;
-        top: 12px;
-        left: 12px; 
-        right: 12px; 
-        bottom: 45px; 
-    }
-    
-    .mensaje p{
-        position: relative;
-        top: -15px;
-        font-size: 1rem;
-    }
+/* Animación de balanceo */
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
 }
